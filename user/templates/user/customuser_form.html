@@ -1,0 +1,41 @@
+{% extends 'user/base.html' %}
+
+
+{% block content %}
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+    <head>
+    	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <title>書籍情報管理システム | ログイン</title>
+    </head>
+    <body class="text-center" style="background-color: aliceblue;">
+        <div class="alert alert-danger" role="alert" th:if="${param.error}">
+           
+        </div>
+        <div class="alert alert-primary" role="alert" th:if="${param.logout}">
+           
+        </div>
+        <h1 class="h3 mt-2 mb-3 font-weight-normal">サインアップ</h1>
+        <form class="w-25 mx-auto" th:action="@{/login}" method="post">
+           	<label for="username" class="sr-only"></label>
+           	
+            <!-- 編集 -->
+            
+            {{form.as_p}}
+            {% csrf_token %}
+
+            <button type="submit">送信</button>
+
+        </form>
+        <p class="mt-2 mb-3 text-muted">&copy; 2023</p>
+    </body>
+</html>
+
+
+{% endblock %}
+
+
+
+

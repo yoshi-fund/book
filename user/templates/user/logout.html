@@ -1,0 +1,50 @@
+{% extends 'user/base.html' %}
+
+{% block content %}
+
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    .container {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        max-width: 400px;
+        width: 100%;
+    }
+
+    .success-icon {
+        font-size: 50px;
+        color: #28a745;
+    }
+
+    .message {
+        font-size: 20px;
+        margin-top: 10px;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <i class="fa fa-check-circle success-icon"></i>
+    <div class="message">
+        ログアウトしました。
+        <br><a href="#">トップページ</a>
+    </div>
+</div>
+</body>
+</html>
+
+
+{% endblock %}
