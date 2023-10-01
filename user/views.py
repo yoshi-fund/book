@@ -8,7 +8,7 @@ from .forms import CustomUserForm
 class Create(generic.CreateView):
     model = CustomUser
     form_class = CustomUserForm
-    success_url = reverse_lazy('#')
+    success_url = reverse_lazy('user:thanks')
 
 
 class Thanks(generic.TemplateView):
