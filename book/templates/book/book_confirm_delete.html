@@ -1,0 +1,14 @@
+{% extends 'book/base.html' %}
+
+{% block content %}
+
+<p>{{book.user}}が投稿した{{book.book_title}}を削除します。よろしいですか？</p>
+
+<form action="" method="post">
+
+    {% csrf_token %}
+    <button type="submit">削除</button>
+
+</form>
+
+{% endblock %}

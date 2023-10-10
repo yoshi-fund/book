@@ -1,0 +1,80 @@
+{% extends 'book/base.html' %}
+
+{% block content %}
+
+{% for book in object_list %}
+
+投稿主 : <a style="color: darkgreen; font-size: 25px;" href="{% url 'book:user_list' user=book.user.id %}">{{book.user}}</a> <br>
+<p><a href="{% url 'book:detail' book.pk %}">{{book.book_title}} - {{book.get_document_type_display}}</a><br>
+評価 : {{book.get_stars_display}} <br>
+投稿日 : <time>{{book.posted_date}}</time>
+</p>
+
+<p>
+{% if book.image %}
+<img src="{{ book.image.url }}" alt="書物の表紙画像" width="500">
+{% endif %}
+
+<details>
+    <summary>コメント</summary>
+        <p>{{book.text |linebreaks}}</p>
+     
+</details>
+
+
+<p>
+<mark>
+
+<a href="{% url 'book:update' book.pk %}">編集</a>
+<a href="{% url 'book:delete' book.pk %}">削除</a>
+
+</mark>
+</p>
+
+<hr>
+
+{% endfor %}
+
+{% if is_paginated %}
+
+<ul class="pagination" style="justify-content: center;">
+
+    {% if page_obj.has_previous %}
+    <li class="page_item">
+        <a class="page-link" 
+        href="?page={{ page_obj.previous_page_number }}"
+        aria-label="preview">
+        <span aria-hidden="true">&laquo;</span>
+    </a>
+    </li>
+    {% endif %}
+
+    {% for num in paginator.page_range %}
+
+    {% if page_obj.number == num %}
+        <li class="page_item active">
+            <span class="page-link">{{ num }}</span>
+        </li>
+
+    {% else %}
+    <li class="page_item">
+        <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+    </li>
+    {% endif %}
+
+    {% endfor %}
+
+    {% if page_obj.has_next %}
+    <li class="page-item">
+        <a class="page-item" 
+        href="?page={{ page_obj.next_page_number }}"
+        aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+        </a>
+    </li>
+    {% endif %}
+
+</ul>
+{% endif %}
+
+{% endblock %}

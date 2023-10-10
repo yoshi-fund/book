@@ -1,0 +1,34 @@
+{% extends 'book/base.html' %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+<div style="text-align: center;">
+
+    <h4>{{user.username}}さんのマイページ</h4>
+    {% if object_list.count == 0 %}
+    <p>{{user.username}}さんの投稿はありません</p>
+    {% else %}
+    <p>投稿<strong>{{object_list.count}}</strong>件</p>
+    {% endif %}
+
+    
+</div>
+<hr>
+{% endif %}
+
+
+{% for book in object_list %}
+
+<a href="{% url 'book:detail' book.pk %}">{{book.book_title}}</a>
+<br>{{book.get_document_type_display}}
+<br>{{book.get_stars_display}}
+{% if book.image %}
+<p><img src="{{ book.image.url }}" alt="書物の表紙" width="500"></p>
+{% endif %}
+
+{% endfor %}
+
+
+{% endblock %}

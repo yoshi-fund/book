@@ -1,0 +1,22 @@
+{% extends 'book/base.html' %}
+
+{% block content %}
+
+<p>
+    投稿主 : {{book.user}} 
+</p>
+
+タイトル : {{book.book_title}} <br>
+カテゴリ : {{book.get_document_type_display}} <br>
+評価 : {{book.get_stars_display}} <br>
+
+
+{% if book.text %}
+{{book.text |linebreaks}}
+{% endif %}
+
+{% if book.image %}
+<img src="{{ book.image.url }}" alt="書物の表紙画像" width="500">
+{% endif %}
+
+{% endblock %}
