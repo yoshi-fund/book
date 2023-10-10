@@ -4,7 +4,7 @@
 
 {% for book in object_list %}
 
-投稿主 : {{book.user}} <br>
+投稿主 : <a style="color: darkgreen; font-size: 25px;" href="{% url 'book:user_list' user=book.user.id %}">{{book.user}}</a> <br>
 <p><a href="{% url 'book:detail' book.pk %}">{{book.book_title}} - {{book.get_document_type_display}}</a><br>
 評価 : {{book.get_stars_display}} <br>
 投稿日 : <time>{{book.posted_date}}</time>
@@ -13,19 +13,23 @@
 <p>
 {% if book.image %}
 <img src="{{ book.image.url }}" alt="書物の表紙画像" width="500">
-{% else %}
-{{book.text |linebreaks}}
 {% endif %}
-</p>
+
+<details>
+    <summary>コメント</summary>
+        <p>{{book.text |linebreaks}}</p>
+     
+</details>
 
 
-
+<p>
 <mark>
 
 <a href="{% url 'book:update' book.pk %}">編集</a>
 <a href="{% url 'book:delete' book.pk %}">削除</a>
 
 </mark>
+</p>
 
 <hr>
 
