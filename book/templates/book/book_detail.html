@@ -2,6 +2,10 @@
 
 {% block content %}
 
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'style.css' %}">
+
 <p>
     投稿主 : {{book.user}} 
 </p>
@@ -11,12 +15,15 @@
 評価 : {{book.get_stars_display}} <br>
 
 
-{% if book.text %}
-{{book.text |linebreaks}}
-{% endif %}
-
 {% if book.image %}
 <img src="{{ book.image.url }}" alt="書物の表紙画像" width="500">
 {% endif %}
+
+{% if book.text %}
+<div class="boxb">
+{{book.text |linebreaks}}
+</div>
+{% endif %}
+
 
 {% endblock %}
