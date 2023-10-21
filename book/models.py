@@ -25,7 +25,7 @@ class Book(models.Model):
 
     book_title = models.CharField('タイトル', max_length=100)  
 
-    image = models.ImageField('表紙画像',help_text='＊任意', blank=True, null=True )
+    image = models.ImageField('表紙画像', blank=True, null=True, help_text='')
 
     document_type = models.IntegerField('カテゴリ', choices=DOCUMENT_TYPE)
 

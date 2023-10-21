@@ -9,7 +9,8 @@ from .forms import BookForm
 
 class List(generic.ListView):
     model = Book
-    paginate_by = 4
+    paginate_by = 5
+
 
 class Detail(generic.DetailView):
     model = Book
@@ -42,7 +43,7 @@ class Delete(generic.DeleteView):
 class UserView(generic.ListView):
     
     template_name = 'book/book_list.html'
-    paginate_by = 3
+    paginate_by = 5
 
     def get_queryset(self):
         user_id = self.kwargs['user']
@@ -54,9 +55,20 @@ class UserView(generic.ListView):
 class Mypage(generic.ListView):
 
     template_name = 'book/mypage.html'
-    paginate_by = 1
+    paginate_by = 5
 
     def get_queryset(self):
         querySet = Book.objects.filter(user=self.request.user).order_by('-posted_date')
 
         return querySet
+    
+
+class Category(generic.ListView):
+    template_name = 'book/book_list.html'
+    paginate_by = 5
+
+    def get_queryset(self):
+        category_id = self.kwargs['document_type']
+        category_list = Book.objects.filter(document_type=category_id).order_by('-posted_date')
+
+        return category_list

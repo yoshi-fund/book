@@ -1,0 +1,8 @@
+{
+    "emmet.triggerExpansionOnTab": true,
+
+    "emmet.includeLanguages": {
+        "django-html": "html"
+    }
+
+}

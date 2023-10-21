@@ -13,6 +13,8 @@ urlpatterns = [
     path('delete/<int:pk>/', views.Delete.as_view(), name='delete'),
     path('user_list/<int:user>/', views.UserView.as_view(), name='user_list'),
     path('mypage/', views.Mypage.as_view(), name='mypage'),
+    path('category_list/<int:document_type>', views.Category.as_view(),
+         name='category')
 
   
     

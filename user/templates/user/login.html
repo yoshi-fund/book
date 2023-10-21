@@ -144,7 +144,7 @@ button{
     <form action="" method="post">
 
       {% if form.errors %}
-      パスワードとユーザー名が一致しません
+      <div style="color: red;">スワードとユーザー名が一致しません</div>
       {% endif %}
       
       {% csrf_token %}
