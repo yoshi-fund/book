@@ -39,7 +39,11 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     'book',
     'user',
-    'django_cleanup'
+    'django_cleanup',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount'
 ]
 
 MIDDLEWARE = [
@@ -50,6 +54,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    'allauth.account.middleware.AccountMiddleware'
 ]
 
 ROOT_URLCONF = "project.urls"
@@ -133,6 +138,25 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 LOGIN_REDIRECT_URL = 'book:list'
 
 AUTH_USER_MODEL = 'user.CustomUser'
+
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend'
+)
+
+ACCOUNT_LOGOUT_REDIRECT_URL = 'book:list'
+
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+
+ACCOUNT_EMAIL_REQUIRED = True
+
+SITE_ID = 1
+
+
+
 
 
 

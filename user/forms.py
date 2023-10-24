@@ -13,7 +13,7 @@ class CustomUserForm(UserCreationForm):
 
     class Meta:
         model = CustomUser
-        fields = ('username', 'password1' )
+        fields = ('email', 'password1' )
         widgets = {
             'username': forms.TextInput(attrs={'placeholder': 'username'}),
         }
