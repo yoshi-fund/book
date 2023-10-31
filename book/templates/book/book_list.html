@@ -17,7 +17,7 @@
 
 <p>
 {% if book.image %}
-<img src="{{ book.image.url }}" alt="書物の表紙画像" width="500" height="500">
+<img style="object-fit: contain;" src="{{ book.image.url }}" alt="書物の表紙画像" width="500" height="500">
 {% endif %}
 
 <details>
@@ -27,12 +27,7 @@
 </details>
 
 <p>
-<mark>
 
-<a href="{% url 'book:update' book.pk %}">編集</a>
-<a href="{% url 'book:delete' book.pk %}">削除</a>
-
-</mark>
 </p>
 
 <hr>

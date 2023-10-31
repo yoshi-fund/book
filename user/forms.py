@@ -9,11 +9,11 @@ class CustomUserForm(UserCreationForm):
         widget=forms.PasswordInput(attrs={'placeholder': 'password'}),
         help_text=None
     )
-    password2 = None  
+    password2 = None  # パスワード確認フィールドを取り除く
 
     class Meta:
         model = CustomUser
-        fields = ('email', 'password1' )
+        fields = ('username', 'password1' )
         widgets = {
             'username': forms.TextInput(attrs={'placeholder': 'username'}),
         }

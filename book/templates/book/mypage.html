@@ -2,6 +2,8 @@
 
 {% block content %}
 
+
+
 {% if user.is_authenticated %}
 
 <div style="text-align: center;">
@@ -25,8 +27,16 @@
 <br>{{book.get_document_type_display}}
 <br>{{book.get_stars_display}}
 {% if book.image %}
-<p><img src="{{ book.image.url }}" alt="書物の表紙" width="500"></p>
+<p><img style="object-fit: contain;" src="{{ book.image.url }}" alt="書物の表紙" width="500" height="500"></p>
 {% endif %}
+
+<mark>
+<a href="{% url 'book:update' book.pk %}">編集</a>
+<a href="{% url 'book:delete' book.pk %}">削除</a>
+</mark>
+
+
+<hr>
 
 {% endfor %}
 
