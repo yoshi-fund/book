@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Amazon.com</title>
+        <title>Book</title>
         <link rel="icon" type="image/x-icon" href="{% static 'assets/favicon.ico' %}" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -29,8 +29,8 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto py-4 py-lg-0">
                         {% if user.is_authenticated %}
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'book:list' %}">トップページ</a></li>
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'book:create' %}">新規作成</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'book:list' %}">トップページ</a></li>
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'book:category' document_type=1 %}">書籍</a></li>
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'book:category' document_type=2 %}">論文</a></li>
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'book:category' document_type=4 %}">その他</a></li>
@@ -52,19 +52,26 @@
             <div class="container position-relative px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-md-10 col-lg-8 col-xl-7">
-                        <div class="site-heading">
-                            <h1 style="color: goldenrod; font-family: Helvetica;">偽Amazon</h1>
-                                <hr>
+                        <div class="site-heading" style="padding-top: 0; margin-top: 0;">
+                            <h1 style="color: goldenrod; font-family: Helvetica;">knowledge</h1>
+                            <form action="" method="get" class="text-center">
+                                <input name="query" 
+                                value="{{ request.GET.query }}"
+                                 type="text"
+                                 placeholder="キーワード"
+                                 size="40" />
+                                <button type="submit">検索</button>
+                            </form>
+                            <hr>
                             {% block content %}
-
-                                {% endblock %}
-
-                               
+        
+                            {% endblock %}
                         </div>
                     </div>
                 </div>
             </div>
         </header>
+        
         <!-- Main Content-->
         
         <div class="container px-4 px-lg-5">

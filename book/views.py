@@ -72,3 +72,17 @@ class Category(generic.ListView):
         category_list = Book.objects.filter(document_type=category_id).order_by('-posted_date')
 
         return category_list
+    
+class PeopleList(generic.ListView):
+    model = Book
+    form_class = BookForm
+    
+    def get_queryset(self):
+        query = self.request.GET.get('query')
+
+        if query:
+            people_list = Book.objects.filter(
+                book_title__icontains=query)
+        else:
+            people_list = Book.objects.all()
+        return people_list

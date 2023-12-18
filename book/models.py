@@ -39,6 +39,6 @@ class Book(models.Model):
     def __str__(self):
         return f'{self.user} - {self.book_title} - {self.get_stars_display()} - {self.posted_date}'
 
-    
+  
 
 # Create your models here.

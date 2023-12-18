@@ -1,78 +1,68 @@
 {% extends 'book/base.html' %}
 
-{% block content %}
-
-{% for book in object_list %}
-
 {% load static %}
 
-<link rel="stylesheet" href="{% static 'style.css' %}">
+{% block content %}
 
-<cite><a style="font-size: 25px; color: rgb(48, 111, 131);;" href="{% url 'book:user_list' user=book.user.id %}">{{book.user}}</a></cite> 
-<div style="font-size: 20px; color: black; display: inline;">（著）</div>
-<p style="font-size: 22px;"><a href="{% url 'book:detail' book.pk %}">{{book.book_title}} - {{book.get_document_type_display}}</a><br>
-評価 : {{book.get_stars_display}} <br>
-投稿日 : <time>{{book.posted_date}}</time>
-</p>
 
-<p>
-{% if book.image %}
-<img style="object-fit: contain;" src="{{ book.image.url }}" alt="書物の表紙画像" width="500" height="500">
-{% endif %}
-
-<details>
-    <summary>コメント</summary>
-        <div class="box"><p>{{book.text |linebreaks}}</p></div>
-     
-</details>
-
-<p>
-
-</p>
-
-<hr>
-
-{% endfor %}
+<table border="1">
+    <tr>
+        <th></th>
+    </tr>
+    {% for book in object_list %}
+    <div class="d-flex justify-content-center">
+        <!-- text-centerを追加 -->
+        <div class="card text-center" style="width: 23rem; margin-right: 1rem;">
+            {% if book.image %}
+            <img src="{{ book.image.url }}" alt="">
+            {% endif %}
+            <div class="card-body">
+                <!-- cart-headerに変更 -->
+                <h5 class="card-header border-primary"><a href="{% url 'book:detail' book.pk %}">{{book.book_title}}</a></h5> 
+                <p class="card-text">{{book.get_industry_display}}</p>
+                <ul class="list-group list-group-flush"> 
+                    <li class="list-group-item">投稿主 : <a href="{% url 'book:user_list' user=book.user.id %}">{{book.user}}</a></li>
+                    <li class="list-group-item">カテゴリー : {{book.get_document_type_display}}</li>
+                    <li class="list-group-item">評価 : {{book.get_stars_display}}</li>
+                    <li class="list-group-item"><details><summary>コメント</summary>{{book.text | linebreaks}}</details></li>
+                    <li class="list-group-item">{{book.get_stars_display}}</li>
+                    <li class="list-group-item">{{book.posted_date}}</a></li>
+                  </ul>
+                
+            </div>
+        </div>
+    </div>
+    <hr>
+    {% endfor %}
+</table>
 
 {% if is_paginated %}
-
 <ul class="pagination" style="justify-content: center;">
-
     {% if page_obj.has_previous %}
     <li class="page_item">
-        <a class="page-link" 
-        href="?page={{ page_obj.previous_page_number }}"
-        aria-label="preview">
-        <span aria-hidden="true">&laquo;</span>
-    </a>
-    </li>
-    {% endif %}
-
-    {% for num in paginator.page_range %}
-
-    {% if page_obj.number == num %}
-        <li class="page_item active">
-            <span class="page-link">{{ num }}</span>
-        </li>
-
-    {% else %}
-    <li class="page_item">
-        <a class="page-link" href="?page={{ num }}">{{ num }}</a>
-    </li>
-    {% endif %}
-
-    {% endfor %}
-
-    {% if page_obj.has_next %}
-    <li class="page-item">
-        <a class="page-item" 
-        href="?page={{ page_obj.next_page_number }}"
-        aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
+        <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="preview">
+            <span aria-hidden="true">&laquo;</span>
         </a>
     </li>
     {% endif %}
-
+    {% for num in paginator.page_range %}
+        {% if page_obj.number == num %}
+            <li class="page_item active">
+                <span class="page-link">{{ num }}</span>
+            </li>
+        {% else %}
+            <li class="page_item">
+                <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+            </li>
+        {% endif %}
+    {% endfor %}
+    {% if page_obj.has_next %}
+    <li class="page-item">
+        <a class="page-item" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+        </a>
+    </li>
+    {% endif %}
 </ul>
 {% endif %}
 

@@ -23,17 +23,34 @@
 
 {% for book in object_list %}
 
-<a href="{% url 'book:detail' book.pk %}">{{book.book_title}}</a>
-<br>{{book.get_document_type_display}}
-<br>{{book.get_stars_display}}
-{% if book.image %}
-<p><img style="object-fit: contain;" src="{{ book.image.url }}" alt="書物の表紙" width="500" height="500"></p>
-{% endif %}
+<div class="d-flex justify-content-center">
+    <!-- text-centerを追加 -->
+    <div class="card text-center" style="width: 23rem; margin-right: 1rem;">
+        {% if book.image %}
+        <img src="{{ book.image.url }}" alt="">
+        {% endif %}
+        <div class="card-body">
+            <!-- cart-headerに変更 -->
+            <h5 class="card-header border-primary"><a href="{% url 'book:detail' book.pk %}">{{book.book_title}}</a></h5> 
+            <p class="card-text">{{book.get_industry_display}}</p>
+            <ul class="list-group list-group-flush"> 
+                <li class="list-group-item">投稿主 : <a href="{% url 'book:user_list' user=book.user.id %}">{{book.user}}</a></li>
+                <li class="list-group-item">カテゴリー : {{book.get_document_type_display}}</li>
+                <li class="list-group-item">評価 : {{book.get_stars_display}}</li>
+                <li class="list-group-item"><details><summary>コメント</summary>{{book.text | linebreaks}}</details></li>
+                <li class="list-group-item">{{book.get_stars_display}}</li>
+                <li class="list-group-item">
+                    <mark>
+                    <a href="{% url 'book:update' book.pk %}">編集</a>
+                    <a href="{% url 'book:delete' book.pk %}">削除</a>
+                    </mark>
+                    </a></li>
+              </ul>
+            
+        </div>
+    </div>
+</div>
 
-<mark>
-<a href="{% url 'book:update' book.pk %}">編集</a>
-<a href="{% url 'book:delete' book.pk %}">削除</a>
-</mark>
 
 
 <hr>
