@@ -10,6 +10,7 @@ from .forms import BookForm
 class List(generic.ListView):
     model = Book
     paginate_by = 5
+    ordering = '-posted_date'
 
 
 class Detail(generic.DetailView):
