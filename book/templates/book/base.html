@@ -48,28 +48,30 @@
             </div>
         </nav>
         <!-- Page Header-->
-        <header class="masthead" style="background-image: url({% static 'assets/img/home-bg.jpg' %})">
-            <div class="container position-relative px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-md-10 col-lg-8 col-xl-7">
-                        <div class="site-heading" style="padding-top: 0; margin-top: 0;">
-                            <h1 style="color: goldenrod; font-family: Helvetica;">knowledge</h1>
-                            <form action="" method="get" class="text-center">
-                                <input name="query" 
-                                value="{{ request.GET.query }}"
-                                 type="text"
-                                 placeholder="キーワード"
-                                 size="40" />
-                                <button type="submit">検索</button>
-                            </form>
-                            <hr>
-                            {% block content %}
+ <header class="masthead" style="background-image: url({% static 'assets/img/home-bg.jpg' %})">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-12"> <!-- コンテナの幅を最大に設定 -->
+                <div class="site-heading" style="padding-top: 0; margin-top: 0;">
+                    <h1 style="color: goldenrod; font-family: Helvetica; white-space: nowrap;">knowledge</h1> <!-- 改行されないように white-space: nowrap を追加 -->
+                    <form action="" method="get" class="text-center">
+                        <input name="query" 
+                               value="{{ request.GET.query }}"
+                               type="text"
+                               placeholder="キーワード"
+                               size="40" />
+                        <button type="submit">検索</button>
+                    </form>
+                    <hr>
+                    {% block content %}
         
-                            {% endblock %}
-                        </div>
-                    </div>
+                    {% endblock %}
                 </div>
             </div>
+        </div>
+    </div>
+</header>
+
         </header>
         
         <!-- Main Content-->

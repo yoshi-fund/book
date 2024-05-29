@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'allauth',
     'allauth.account',
-    'allauth.socialaccount'
+    'allauth.socialaccount',
+    'django_bootstrap5'
 ]
 
 MIDDLEWARE = [
@@ -85,8 +86,8 @@ DATABASES = {
  'default': {
        'ENGINE': 'django.db.backends.postgresql',
        'NAME': 'unis',
-       'USER': '??',
-       'PASSWORD': '??',
+       'USER': 'anaiyoshikazu',
+       'PASSWORD': 'yoshi318',
        'HOST': 'localhost',
        'PORT': '5432',
    }
